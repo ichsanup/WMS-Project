@@ -89,9 +89,9 @@ describe("Hire Talent", async function () {
     await btnHire.click();
     await driver.sleep(1000);
   });
-  // after(async function () {
-  //   if (driver) {
-  //     await driver.quit(); // pastikan browser ditutup setelah test selesai
-  //   }
-  // });
+  after(async function () {
+    if (driver) {
+      await driver.quit(); // pastikan browser ditutup setelah test selesai
+    }
+  });
 });
