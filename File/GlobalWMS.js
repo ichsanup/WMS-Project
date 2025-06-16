@@ -38,7 +38,7 @@ const GlobalWMS = {
     '//div[@class="flex flex-1 items-center justify-center rounded-md px-4 py-2"]//span[@class="ml-2 cursor-pointer text-[12px] font-semibold text-[#434343]"][text()="Tap untuk membuka kalender"]',
   btn_Login:
     "//*[@class='w-full rounded-lg bg-red-500 p-3 font-bold text-white hover:bg-red-600']",
-  Login_Pre: '//button[@aria-label="Pre-Production"',
+  Login_Pre: '//button[@aria-label="Pre-Production"]',
   Login_Prod: '//button[@aria-label="Production"]',
   btnRegistNow:
     "//button[@class='border-b-2 border-b-[#E8655B] font-bold text-[#E8655B]']",
