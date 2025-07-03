@@ -19,16 +19,17 @@ describe("Script Breakdown", function () {
     await driver.executeScript("document.body.style.zoom='65%'");
     const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Sample));
     chooseFile.click();
+    await driver.sleep(4000);
     for (let i = 0; i < Loop_section; i++) {
-      await driver.sleep(1200);
+      await driver.sleep(2500);
       const btnAddND = await driver.findElement(
         By.xpath(
           '//button[@class="flex min-h-[43px] min-w-[186px] items-center gap-2 rounded-lg bg-[#F97066] px-8 py-2 font-semibold text-white"]'
         )
       );
-      await driver.sleep(1200);
+      await driver.sleep(2500);
       btnAddND.click();
-      await driver.sleep(1200);
+      await driver.sleep(1000);
       try {
         const clickDate = await driver.findElement(
           By.xpath(
@@ -37,6 +38,7 @@ describe("Script Breakdown", function () {
         );
         await driver.wait(until.elementIsVisible(clickDate), 1000);
         clickDate.click();
+        await driver.sleep(1500);
       } catch (error) {
         console.log("Calendar not found", error);
       }

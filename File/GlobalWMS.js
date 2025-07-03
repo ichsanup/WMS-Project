@@ -2,6 +2,7 @@ const GlobalWMS = {
   URL: "https://qctest---frontend-shooting-a6e4wwojjq-et.a.run.app/",
   URL2: "https://staging---frontend-shooting-a6e4wwojjq-et.a.run.app/",
   URL3: "https://dev---frontend-shooting-a6e4wwojjq-et.a.run.app/",
+  URL4: "https://syuting.film/",
   URL_Stagging:
     "https://staging---frontend-shooting-710933064092.asia-southeast2.run.app/",
   Email_Login: "ichsanup@wongmakmur.com",
@@ -11,13 +12,14 @@ const GlobalWMS = {
   Password_CS: "Password123*",
   PopupAuth:
     "https://admin:68BHr63vBpH2G7jh@staging---frontend-shooting-a6e4wwojjq-et.a.run.app/",
+  PopupAuth2: "https://admin:68BHr63vBpH2G7jh@syuting.film/",
   Data_Name: "tester",
   Data_ID: Math.floor(Math.random() * 100).toString(),
   Data_Phone: Math.floor(Math.random() * 1000000000000)
     .toString()
     .padStart(12, "0"), //padStart memastikan bahwa data memiliki jumlah yang kita inginkan (12) dan 0 untuk memastikan jika panjang kurang dari 6 agar tidak error
   Phone_Dummy: 081315150475,
-  Email_Host: "ntr59508@jioso.com",
+  Email_Host: "aii18775@jioso.com",
   New_Email: "unf98323@toaik.com",
   Email_Random: Math.floor(Math.random() * 100).toString() + "@gmail.com",
   Data_Password: "Password123*",
@@ -43,9 +45,9 @@ const GlobalWMS = {
   btnRegistNow:
     "//button[@class='border-b-2 border-b-[#E8655B] font-bold text-[#E8655B]']",
   btnJointTalent:
-    "//button[@class='flex w-full items-center justify-center gap-2 rounded-lg bg-red-400 p-3'][@aria-label='Join as Talent']",
+    '//button[@class="flex w-full items-center justify-center gap-2 rounded-lg p-3 bg-red-400"]',
   btnRegisterNow:
-    "//button[@class='mb-5 w-full rounded-lg bg-red-500 py-3 font-medium text-white hover:bg-red-600']",
+    '//button[@class="w-full rounded-lg bg-red-500 py-3 font-medium text-white hover:bg-red-600" and text()="Register Now"]',
 };
 
 module.exports = GlobalWMS;

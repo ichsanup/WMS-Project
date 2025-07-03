@@ -2,8 +2,8 @@ const { By, until } = require("selenium-webdriver");
 const GlobalWMS = require("./GlobalWMS");
 
 async function loginpre(driver) {
-  await driver.get(GlobalWMS.URL2);
-  await driver.get(GlobalWMS.PopupAuth);
+  await driver.get(GlobalWMS.URL4);
+  await driver.get(GlobalWMS.PopupAuth2);
 
   let emailField = await driver.findElement(By.id("emailInput"));
   await emailField.sendKeys(GlobalWMS.Email_CS1);

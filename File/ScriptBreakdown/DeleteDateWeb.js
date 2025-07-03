@@ -22,7 +22,7 @@ describe("Script Breakdown", function () {
     await driver.sleep(1500);
     for (let i = 0; i < Loop_section; i++) {
       try {
-        await driver.sleep(1500);
+        await driver.sleep(2500);
         const swipeLeft = await driver.findElement(
           By.xpath(
             '//div[@class="flex flex-1 items-center justify-center rounded-md px-4 py-2"]'

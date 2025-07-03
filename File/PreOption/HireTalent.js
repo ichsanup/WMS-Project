@@ -18,12 +18,11 @@ describe("Hire Talent", async function () {
   it("Hire Talent as PH", async function () {
     await driver.executeScript("document.body.style.zoom='60%'");
     await driver.executeScript("window.scrollBy(0,350)");
-    await driver.sleep(1000);
+    await driver.sleep(1500);
     let selectTalent = await driver.findElement(
       By.xpath(
-        '(//div[@class="relative flex min-h-[400px] w-full max-w-[323px] flex-col items-start overflow-hidden rounded-3xl border-2 border-[#B9EBF7] bg-white lg:min-h-[534px] lg:w-[323px] lg:min-w-[240px]"])[8]'
-      ),
-      1500
+        '(//div[@class="relative hidden min-h-[400px] w-full max-w-[323px] flex-col items-start overflow-hidden rounded-3xl border-2 border-[#42C1E3] bg-white lg:flex lg:min-h-[534px] lg:w-[323px] lg:min-w-[240px]"])[1]'
+      )
     );
     await driver.executeScript(
       "arguments[0].scrollIntoView(true);",
@@ -32,7 +31,8 @@ describe("Hire Talent", async function () {
     await selectTalent.click();
     await driver.sleep(500);
     await driver.actions().sendKeys(Key.UP).perform();
-    // await driver.sleep(1500);
+    await driver.sleep(2500);
+    await driver.actions().sendKeys(Key.UP).perform();
     let selectCalendar = await driver.findElement(
       By.xpath(
         '//div[@class="flex items-center justify-between"]//span[@class="material-icons text-[24px]"]'
@@ -81,13 +81,12 @@ describe("Hire Talent", async function () {
       By.xpath('//button[text()="Close"]')
     );
     await btnClose.click();
+    await driver.sleep(2000);
     let btnHire = await driver.findElement(
-      By.xpath(
-        '//button[@class="mt-5 flex w-[349px] max-w-full flex-col overflow-hidden text-base font-bold text-white"]//div[text()="Hire Now"]'
-      )
+      By.xpath('//button//div[text()="Hire Now"]')
     );
     await btnHire.click();
-    await driver.sleep(1000);
+    await driver.sleep(3000);
   });
   after(async function () {
     if (driver) {

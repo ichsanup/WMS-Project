@@ -78,10 +78,8 @@ describe("WMS Regist Test", function () {
       );
       await btnChecklist.click();
       await driver.sleep(1000);
-      let linkTiktok = await driver.findElement(
-        By.xpath(
-          '//input[@class="h-9 w-full rounded-md border px-3 py-2 text-sm placeholder:text-[#D9D9D9] border-[#0000001A] focus:outline-[#E8655B]"]'
-        )
+      const linkTiktok = await driver.findElement(
+        By.xpath('//input[@name="tiktok_link"]')
       );
       await linkTiktok.sendKeys("https://vt.tiktok.com/ZSrBbGEX6/");
       let btnRegist = await driver.findElement(
