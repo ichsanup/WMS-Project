@@ -2,8 +2,8 @@ const { By, until } = require("selenium-webdriver");
 const GlobalWMS = require("./GlobalWMS");
 
 async function regist(driver) {
-  await driver.get(GlobalWMS.URL2);
-  await driver.get(GlobalWMS.PopupAuth);
+  await driver.get(GlobalWMS.URL4);
+  await driver.get(GlobalWMS.PopupAuth2);
 
   let textbtnRegist = await driver.findElement(
     By.xpath(GlobalWMS.btnRegistNow)

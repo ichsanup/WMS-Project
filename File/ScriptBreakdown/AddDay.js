@@ -16,20 +16,20 @@ describe("Script Breakdown", function () {
   });
 
   it("Add New Day", async function () {
-    await driver.executeScript("document.body.style.zoom='65%'");
+    // await driver.executeScript("document.body.style.zoom='65%'");
     const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Sample));
     chooseFile.click();
-    await driver.sleep(4000);
+    await driver.sleep(1000);
     for (let i = 0; i < Loop_section; i++) {
-      await driver.sleep(2500);
+      await driver.sleep(4500);
       const btnAddND = await driver.findElement(
         By.xpath(
           '//button[@class="flex min-h-[43px] min-w-[186px] items-center gap-2 rounded-lg bg-[#F97066] px-8 py-2 font-semibold text-white"]'
         )
       );
-      await driver.sleep(2500);
+      await driver.sleep(1500);
       btnAddND.click();
-      await driver.sleep(1000);
+      await driver.sleep(4500);
       try {
         const clickDate = await driver.findElement(
           By.xpath(
@@ -61,7 +61,7 @@ describe("Script Breakdown", function () {
           );
           return elementSelecDate.length === 0; // Means date  button disappeared
         }, 1000);
-        console.log("data success to delete");
+        console.log("success selected data");
       } catch (error) {
         console.log("Failed to add Date", error);
       }

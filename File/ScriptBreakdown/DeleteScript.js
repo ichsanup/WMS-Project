@@ -55,7 +55,6 @@ describe("Delete Script", function () {
       }
     }
   });
-
   after(async function () {
     if (driver) {
       await driver.quit();

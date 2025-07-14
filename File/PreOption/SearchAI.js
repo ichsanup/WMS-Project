@@ -19,7 +19,13 @@ describe("Search AI", async function () {
     await driver.executeScript("document.body.style.zoom='65%'");
     const search = await driver.findElement(By.id("searchInput"));
     await search.sendKeys("Pria Indonesia umur diatas 25 tahun", Key.ENTER);
-    await driver.sleep(2000);
+    await driver.sleep(3500);
     await driver.actions().sendKeys(Key.PAGE_DOWN).perform();
+    await driver.sleep(3500);
+  });
+  after(async function () {
+    if (driver) {
+      await driver.quit();
+    }
   });
 });

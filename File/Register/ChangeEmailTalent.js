@@ -4,6 +4,7 @@ const chai = require("chai");
 const expect = chai.expect;
 const GlobalWMS = require("../GlobalWMS");
 const { regist } = require("../RegistHelper");
+const { Key } = require("selenium-webdriver");
 
 describe("WMS Regist Test", function () {
   let driver;
@@ -15,7 +16,7 @@ describe("WMS Regist Test", function () {
   });
 
   it("WMS Regist", async function () {
-    await driver.executeScript("document.body.style.zoom='65%'");
+    // await driver.executeScript("document.body.style.zoom='65%'");
     //Webdriverwait in mocha
     const waitinputName = await driver.wait(
       until.elementLocated(
@@ -37,20 +38,13 @@ describe("WMS Regist Test", function () {
       1000
     );
     await inputId.sendKeys(GlobalWMS.Data_ID);
-    let phoneNumber = await driver.findElement(
-      By.xpath(
-        '//input[@class="form-control !w-full border px-3 py-2 border-gray-300 bg-white "][@value="+62"]'
-      ),
-      1000
-    );
-    await phoneNumber.sendKeys(GlobalWMS.Data_Phone);
     let email = await driver.findElement(
       By.xpath(
         '//input[@class="w-full rounded-md border px-3 py-2 border-gray-300 bg-white "][@name="email"]'
       ),
       1000
     );
-    await email.sendKeys(GlobalWMS.Email_Host);
+    await email.sendKeys(GlobalWMS.Email_Random);
     let password = await driver.findElement(
       By.xpath(
         '//input[@class="w-full rounded-md border px-3 py-2 border-gray-300 bg-white "][@name="password"]'
@@ -78,10 +72,8 @@ describe("WMS Regist Test", function () {
       );
       await btnChecklist.click();
       await driver.sleep(1000);
-      let linkTiktok = await driver.findElement(
-        By.xpath(
-          '//input[@class="h-9 w-full rounded-md border px-3 py-2 text-sm placeholder:text-[#D9D9D9] border-[#0000001A] focus:outline-[#E8655B]"]'
-        )
+      const linkTiktok = await driver.findElement(
+        By.xpath('//input[@name="tiktok_link"]')
       );
       await linkTiktok.sendKeys("https://vt.tiktok.com/ZSrBbGEX6/");
       let btnRegist = await driver.findElement(
@@ -93,34 +85,44 @@ describe("WMS Regist Test", function () {
       await driver.wait(until.elementIsVisible(btnRegist), 1000);
       await btnRegist.click();
       console.log("Button Regist Berhasil Diklik");
-
       await driver.sleep(1500);
-      // let currentURL = await driver.getCurrentUrl();
-      // console.log("Current URL:", currentURL);
-      // expect(currentURL).to.equal(
-      //   "https://admin:68BHr63vBpH2G7jh@frontend-shooting-a6e4wwojjq-et.a.run.app/register/talent/verify"
-      // );
     } catch (error) {
       console.log("URL tidak sesuai", error.message);
     }
-    await driver.sleep(500);
+    await driver.sleep(1000);
     const changeEmail = await driver.findElement(
       By.xpath(
         '//button[@class="border-b-2 border-b-[#E8655B] text-lg font-bold text-[#E8655B]"][text()="Change email"]'
       )
     );
     changeEmail.click();
-    const newEmail = await driver.sleep(
+    await driver.sleep(1500);
+    const newEmail = await driver.findElement(
       By.xpath(
         '//input[@name="email"][@class="w-full rounded-md border px-3 py-2 border-gray-300 bg-white "]'
       )
     );
-    newEmail.sendKeys(GlobalWMS.New_Email);
-    const btnResend = await driver.findElement(
+    async function clearAndType(element, value) {
+      await element.clear();
+      await element.sendKeys(value);
+    }
+    await clearAndType(newEmail, GlobalWMS.New_Email);
+    await driver.sleep(6500);
+    const btnchangeEmail = await driver.findElement(
       By.xpath(
-        '//button[@class="w-full rounded-lg bg-red-500 py-3 font-bold text-white hover:bg-red-600"]'
+        '//button[@class="w-full rounded-lg bg-red-500 py-3 font-bold text-white hover:bg-red-600 disabled:bg-red-300"][text()="Change email"]'
       )
     );
-    btnResend.click();
+    await btnchangeEmail.click();
+    let expectCondition = await findElement(
+      By.xpath("//*[contains(text(), 'Account Created')]")
+    );
+    expect(await expectCondition.getText()).to.include("Account Created");
+    await driver.sleep(4500);
   });
+  // after(async function () {
+  //   if (driver) {
+  //     await driver.quit();
+  //   }
+  // });
 });

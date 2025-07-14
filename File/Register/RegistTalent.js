@@ -37,13 +37,6 @@ describe("WMS Regist Test", function () {
       1000
     );
     await inputId.sendKeys(GlobalWMS.Data_ID);
-    let phoneNumber = await driver.findElement(
-      By.xpath(
-        '//input[@class="form-control !w-full border px-3 py-2 border-gray-300 bg-white "][@value="+62"]'
-      ),
-      1000
-    );
-    await phoneNumber.sendKeys(GlobalWMS.Phone_Dummy);
     let email = await driver.findElement(
       By.xpath(
         '//input[@class="w-full rounded-md border px-3 py-2 border-gray-300 bg-white "][@name="email"]'
@@ -91,16 +84,9 @@ describe("WMS Regist Test", function () {
       await driver.wait(until.elementIsVisible(btnRegist), 1000);
       await btnRegist.click();
       console.log("Button Regist Berhasil Diklik");
-
       await driver.sleep(1000);
-      // let currentURL = await driver.getCurrentUrl();
-      // console.log("Current URL:", currentURL);
-      // expect(currentURL).to.equal(
-      //   "https://admin:68BHr63vBpH2G7jh@qctest---frontend-shooting-a6e4wwojjq-et.a.run.app/register/talent/form"
-      // );
     } catch (error) {
       console.log("URL tidak sesuai", error.message);
     }
-    await driver.sleep(1000);
   });
 });

@@ -1,7 +1,5 @@
 const { BUilder, By, until, Actions, Builder } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
-const chai = require("chai");
-const expect = chai.expect;
 const { login } = require("../LoginHelper");
 const GlobalWMS = require("../GlobalWMS");
 
@@ -84,7 +82,6 @@ describe("Add media at Briefing", function () {
         console.error("Terjadi error:", err);
       }
     }
-
     updateBriefingByName("Test Tiga"); // contoh penggunaan
   });
   after(async function () {

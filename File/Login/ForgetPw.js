@@ -40,13 +40,13 @@ describe("Forgot Password", function () {
       .forBrowser("chrome")
       .setChromeOptions(options)
       .build();
+    await driver.executeScript("document.body.style.zoom='60%'");
   });
 
   it("Test Forgot Password", async function () {
     try {
-      Link = await driver.get(GlobalWMS.URL);
-      popUp = await driver.get(GlobalWMS.PopupAuth);
-
+      Link = await driver.get(GlobalWMS.URL4);
+      popUp = await driver.get(GlobalWMS.PopupAuth2);
       let forgotpw = await driver.findElement(
         By.xpath(
           '//button[@class="border-b-2 border-black font-bold text-black"][text()="Forget Password"]'
@@ -62,7 +62,7 @@ describe("Forgot Password", function () {
       await driver.wait(until.elementIsVisible(enterEmail), 1000);
       await driver.wait(until.elementIsEnabled(enterEmail), 1000);
       // await enterEmail.sendKeys(RandomEmail());
-      await enterEmail.sendKeys("helen@wongmakmur.com");
+      await enterEmail.sendKeys("ichsanustaf@gmail.com");
 
       let btn_Resetpw = await driver.findElement(
         By.xpath(
@@ -98,7 +98,6 @@ describe("Forgot Password", function () {
 
     await driver.sleep(1000);
   });
-
   after(async function () {
     await driver.quit();
   });

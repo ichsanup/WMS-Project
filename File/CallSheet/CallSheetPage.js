@@ -15,9 +15,9 @@ describe("View Call Sheet", function () {
   });
 
   it("WMS Website", async function () {
-    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Sample));
+    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.CallSheet));
     chooseFile.click();
-    await driver.sleep(2500);
+    await driver.sleep(4500);
     const DateShow = await driver.findElement(
       By.xpath(
         '//div[@class="flex flex-1 items-center justify-center rounded-md px-4 py-2"]'

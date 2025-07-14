@@ -13,21 +13,21 @@ const GlobalWMS = {
   PopupAuth:
     "https://admin:68BHr63vBpH2G7jh@staging---frontend-shooting-a6e4wwojjq-et.a.run.app/",
   PopupAuth2: "https://admin:68BHr63vBpH2G7jh@syuting.film/",
-  Data_Name: "tester",
+  Data_Name: "Afgan",
   Data_ID: Math.floor(Math.random() * 100).toString(),
   Data_Phone: Math.floor(Math.random() * 1000000000000)
     .toString()
     .padStart(12, "0"), //padStart memastikan bahwa data memiliki jumlah yang kita inginkan (12) dan 0 untuk memastikan jika panjang kurang dari 6 agar tidak error
   Phone_Dummy: 081315150475,
-  Email_Host: "aii18775@jioso.com",
-  New_Email: "unf98323@toaik.com",
+  Email_Host: "sht80450@jioso.com",
+  New_Email: "1@toaik.com",
   Email_Random: Math.floor(Math.random() * 100).toString() + "@gmail.com",
   Data_Password: "Password123*",
   Address: "Indonesia",
   Sample:
     '//h3[contains(text(), "Sample.fdx")]/ancestor::div[contains(@class, "mb-2")]/following-sibling::div//span[text()="Lihat script"]',
-  DragnDrop:
-    '//h3[contains(text(), "DragDrop.fdx")]/ancestor::div[contains(@class, "mb-2")]/following-sibling::div//span[text()="Lihat script"]',
+  Above:
+    '//h3[contains(text(), "Above the Law full (1).fdx")]/ancestor::div[contains(@class, "mb-2")]/following-sibling::div//span[text()="Lihat script"]',
   CallSheet:
     '//h3[contains(text(), "CallSheet.fdx")]/ancestor::div[contains(@class, "mb-2")]/following-sibling::div//span[text()="Lihat script"]',
   Bookworm:
@@ -35,7 +35,7 @@ const GlobalWMS = {
   Next: '//button[@class="w-full rounded-lg border border-red-400 p-3 font-medium text-red-400"]',
   Skip: '//button[@class="w-full rounded-lg border border-red-400 p-3 font-medium text-red-400"][text()="Skip"]',
   Create_New:
-    '//button[@class="inline-flex h-12 w-[150px] items-center justify-center rounded-lg border border-[#E8655B] bg-white px-8 py-2 text-[#E8655B]"]//span[text()="Create New"]',
+    '//button[@class="inline-flex h-12 w-[150px] items-center justify-center rounded-lg border border-[#E8655B] bg-white px-8 py-2 text-[#E8655B]"]',
   Choose_Date:
     '//div[@class="flex flex-1 items-center justify-center rounded-md px-4 py-2"]//span[@class="ml-2 cursor-pointer text-[12px] font-semibold text-[#434343]"][text()="Tap untuk membuka kalender"]',
   btn_Login:
@@ -70,3 +70,18 @@ module.exports = GlobalWMS;
 
 // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjU0LCJuYW1lIjoic2FuIiwiZW1haWwiOiJzYW5Ad29uZ21ha211ci5jb20iLCJyb2xlX2lkIjo0LCJwcm9kdWN0aW9uX2hvdXNlIjp7ImlkIjoxMCwibmFtZSI6IkFydW5pa2EgU3R1ZGlvIiwiaXNfb25ib2FyZGVkIjp0cnVlfSwiaWF0IjoxNzQ3NjM2NTgyLCJleHAiOjE3NTAyMjg1ODJ9.-cpkSJ5zgIkIF1wy4EFeNPaLvS7RCr1jfbYH3HJwTog"; // isi token kamu lengkap di sini
 // Select Time on CS: '//div[@class="ant-picker-content"]//ul[@class="ant-picker-time-panel-column"]//li[@class="ant-picker-time-panel-cell"]//div[@class="ant-picker-time-panel-cell-inner"][text()="03"]'
+
+// Upload File Otomatis
+// let fileInput = await driver.findElement(By.xpath('//input[@type="file"]'));
+// const filePath =
+//   "C:UsersichsaOneDrive - student.gunadarma.ac.idGambarTampilan awal.png";
+// driver.sleep(500);
+// await fileInput.sendKeys(filePath);
+// await driver.wait(until.elementIsVisible(fileInput), 10000);
+// let uploadImage = await driver.findElement(
+//   By.xpath('//img[contains(@class,"object-cover")]')
+// );
+// const isDisplayedImg = await uploadImage.isDisplayed();
+// assert(await uploadImage.isDisplayed(), "Image was not uploaded");
+// console.log("Upload berhasil dan gambar muncul.", isDisplayedImg);
+// await driver.sleep(1000);

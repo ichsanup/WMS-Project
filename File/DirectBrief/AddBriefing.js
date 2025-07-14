@@ -13,6 +13,7 @@ const randomText = () => {
   return result;
 };
 const Loop_Section = 3;
+const GlobalWMS = require("../GlobalWMS");
 
 describe("WMS Director Test", function () {
   let driver;
@@ -26,11 +27,7 @@ describe("WMS Director Test", function () {
 
   it("WMS Website", async function () {
     await driver.executeScript("document.body.style.zoom='75%'"); //zoom out page
-    const chooseFile = await driver.findElement(
-      By.xpath(
-        '//h3[contains(text(), "Sample.fdx")]/ancestor::div[contains(@class, "mb-2")]/following-sibling::div//span[text()="Lihat script"]'
-      )
-    );
+    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Sample));
     chooseFile.click();
     await driver.sleep(500);
     const menuBriefing = await driver.findElement(
@@ -39,12 +36,12 @@ describe("WMS Director Test", function () {
       )
     );
     menuBriefing.click();
-    await driver.sleep(500);
+    await driver.sleep(2000);
     //Looping new section with for
     for (let i = 0; i < Loop_Section; i++) {
       let newSection = await driver.findElement(
         By.xpath(
-          '//button[@class="flex items-center rounded-md bg-[#f97066] px-4 py-2 text-white transition-colors hover:bg-[#e05d53]"][text()="Section Baru"]'
+          '(//button[@class="flex items-center rounded-md bg-[#f97066] px-4 py-2 font-bold text-white transition-colors hover:bg-[#e05d53]"])[1]'
         )
       );
       newSection.click();
@@ -67,10 +64,9 @@ describe("WMS Director Test", function () {
       expect(isVisiblecreateSection).to.be.true;
       // add briefing
       await driver.sleep(1000);
-      // await driver.executeScript("window.scrollBy(0,500);");
       let addBriefing = await driver.findElement(
         By.xpath(
-          '//button[@class="mb-3 flex items-center rounded-md bg-[#f97066] px-3 py-1.5 text-sm text-white transition-colors hover:bg-[#e05d53]"]'
+          '//button[@class="mb-3 flex items-center rounded-md bg-[#f97066] px-3 py-1.5 text-sm font-bold text-white transition-colors hover:bg-[#e05d53]"]'
         )
       );
       addBriefing.click();

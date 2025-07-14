@@ -67,7 +67,7 @@ describe("Available Date Filter", async function () {
       )
     );
     await btnApply.click();
-    await driver.sleep(500);
+    await driver.sleep(2500);
   });
   after(async function () {
     if (driver) {

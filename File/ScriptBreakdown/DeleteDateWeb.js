@@ -16,10 +16,10 @@ describe("Script Breakdown", function () {
   });
 
   it("Delete Date", async function () {
-    await driver.executeScript("document.body.style.zoom='65%'");
+    await driver.executeScript("document.body.style.zoom='75%'");
     const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Sample));
     chooseFile.click();
-    await driver.sleep(1500);
+    await driver.sleep(2000);
     for (let i = 0; i < Loop_section; i++) {
       try {
         await driver.sleep(2500);
@@ -35,51 +35,28 @@ describe("Script Breakdown", function () {
           .move({ origin: swipeLeft, x: -700, y: 0 })
           .release()
           .perform();
-        await driver.sleep(1000);
+        await driver.sleep(1500);
 
         // 🔥 Check if btnDelete exists
         const btnDeleteList = await driver.findElements(
           By.xpath(
-            "//div[@class='relative overflow-hidden']//span[@class='material-icons-outlined text-[#E8655B]'][normalize-space()='delete']"
+            '//button[@class="flex h-12 w-12 items-center justify-center rounded-full"]//span[text()="delete"]'
           )
         );
-        await driver.sleep(1000);
-
+        await driver.sleep(1500);
         if (btnDeleteList.length === 0) {
           console.log("No more data to delete.");
           break; // ❗ exit loop if no delete button found
         }
-
         const btnDelete = btnDeleteList[0];
         await btnDelete.click();
-        await driver.sleep(500);
-
-        const btnDelete2List = await driver.findElements(
+        await driver.sleep(1500);
+        const btnHapus = await driver.findElement(
           By.xpath(
             '//button[@class="w-1/3 rounded-md bg-[#f97066] py-3 text-center text-lg font-medium text-white transition-colors hover:bg-[#e05d53]"]'
           )
         );
-
-        if (btnDelete2List.length > 0) {
-          await btnDelete2List[0].click();
-        }
-
-        // ✅ Wait and confirm delete success
-        try {
-          await driver.wait(async () => {
-            const elementsbtnDelete2 = await driver.findElements(
-              By.xpath(
-                '//button[@class="w-1/3 rounded-md bg-[#f97066] py-3 text-center text-lg font-medium text-white transition-colors hover:bg-[#e05d53]"]'
-              )
-            );
-            return elementsbtnDelete2.length === 0;
-          }, 1000);
-
-          console.log("Data success to delete");
-        } catch (error) {
-          console.error("Data failed to delete", error);
-        }
-
+        await btnHapus.click();
         await driver.sleep(1000);
       } catch (error) {
         console.error("Data sudah tidak ada lagi");
@@ -87,7 +64,6 @@ describe("Script Breakdown", function () {
       }
     }
   });
-
   after(async function () {
     if (driver) {
       await driver.quit(); // pastikan browser ditutup setelah test selesai

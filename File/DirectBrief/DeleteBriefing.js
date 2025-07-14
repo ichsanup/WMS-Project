@@ -1,7 +1,5 @@
 const { Builder, By, until, Actions } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome"); //import chrome options
-const chai = require("chai");
-const expect = chai.expect;
 const { login } = require("../LoginHelper");
 const loop_section = 4;
 

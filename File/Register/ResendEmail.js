@@ -4,6 +4,7 @@ const chai = require("chai");
 const expect = chai.expect;
 const GlobalWMS = require("../GlobalWMS");
 const { regist } = require("../RegistHelper");
+const { Key } = require("selenium-webdriver");
 
 describe("WMS Regist Test", function () {
   let driver;
@@ -37,20 +38,13 @@ describe("WMS Regist Test", function () {
       1000
     );
     await inputId.sendKeys(GlobalWMS.Data_ID);
-    let phoneNumber = await driver.findElement(
-      By.xpath(
-        '//input[@class="form-control !w-full border px-3 py-2 border-gray-300 bg-white "][@value="+62"]'
-      ),
-      1000
-    );
-    await phoneNumber.sendKeys(GlobalWMS.Data_Phone);
     let email = await driver.findElement(
       By.xpath(
         '//input[@class="w-full rounded-md border px-3 py-2 border-gray-300 bg-white "][@name="email"]'
       ),
       1000
     );
-    await email.sendKeys(GlobalWMS.Email_Host);
+    await email.sendKeys(GlobalWMS.Email_Random);
     let password = await driver.findElement(
       By.xpath(
         '//input[@class="w-full rounded-md border px-3 py-2 border-gray-300 bg-white "][@name="password"]'
@@ -66,31 +60,44 @@ describe("WMS Regist Test", function () {
     );
     await confirmpw.sendKeys(GlobalWMS.Data_Password);
     try {
+      driver.sleep(1000);
+      let btnChecklist = await driver.findElement(
+        By.xpath(
+          '(//label[@class="flex items-center gap-2"]//input[@name="agency_interest" and @type="checkbox"])[1]'
+        )
+      );
+      await driver.executeScript(
+        "arguments[0].scrollIntoView(true);",
+        btnChecklist
+      );
+      await btnChecklist.click();
+      await driver.sleep(1000);
+      const linkTiktok = await driver.findElement(
+        By.xpath('//input[@name="tiktok_link"]')
+      );
+      await linkTiktok.sendKeys("https://vt.tiktok.com/ZSrBbGEX6/");
       let btnRegist = await driver.findElement(
         By.xpath(
-          '//button[@class="w-full rounded-lg bg-red-500 py-3 font-bold text-white hover:bg-red-600"][text()="Register Now"]'
+          '//button[@class="w-full rounded-lg bg-red-500 py-3 font-bold text-white hover:bg-red-600 disabled:bg-red-300" and text()="Register Now"]'
         ),
         1000
       );
       await driver.wait(until.elementIsVisible(btnRegist), 1000);
       await btnRegist.click();
-      console.log("Button Regist Berhasil Diklik");
-
-      await driver.sleep(1500);
-      let currentURL = await driver.getCurrentUrl();
-      console.log("Current URL:", currentURL);
-      expect(currentURL).to.equal(
-        "https://admin:68BHr63vBpH2G7jh@frontend-shooting-a6e4wwojjq-et.a.run.app/register/talent/verify"
+      await driver.sleep(62000);
+      const btnResendEmail = await driver.findElement(
+        By.xpath(
+          '//button[@class="w-full rounded-lg py-3 text-xl font-medium text-white bg-red-500 hover:bg-red-600"][text()="Resend Email"]'
+        )
       );
+      await btnResendEmail.click();
     } catch (error) {
-      console.log("URL tidak sesuai", error.message);
+      console.log("Gagal Change Email", error.message);
     }
-    await driver.sleep(500);
-    const resendEmail = await driver.findElement(
-      By.xpath(
-        '//button[@class="w-full rounded-lg py-3 text-xl font-medium text-white bg-red-500 hover:bg-red-600"][text()="Resend Email"]'
-      )
-    );
-    resendEmail.click();
+  });
+  after(async function () {
+    if (driver) {
+      await driver.quit();
+    }
   });
 });
