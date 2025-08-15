@@ -16,18 +16,18 @@ describe("Add Briefing", function () {
 
   it("Add Briefing Timeline Page", async function () {
     await driver.executeScript("document.body.style.zoom='65%'");
-    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.CallSheet));
+    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Baby));
     await chooseFile.click();
-    await driver.sleep(1000);
+    await driver.sleep(2500);
     const menuTimeline = await driver.findElement(
-      By.xpath('//nav[@class="flex w-full gap-12"]//a[text()="Timeline"]')
+      By.xpath('//a[contains(text(), "Timeline")]')
     );
     const EnableTimeline = await menuTimeline.isEnabled();
     expect(EnableTimeline).to.be.true;
     await menuTimeline.click();
-    await driver.sleep(1000);
+    await driver.sleep(2500);
     let cardview = await driver.findElement(
-      By.xpath('//div[@id="draggable-scene-5167"]')
+      By.xpath('//div[@id="draggable-scene-9019"]')
     );
     const Enablecardview = await cardview.isEnabled();
     expect(Enablecardview).to.be.true;
@@ -43,12 +43,17 @@ describe("Add Briefing", function () {
     expect(IsEnabled).to.be.true;
     await driver.sleep(1000);
     await addBrief.click();
+    await driver.sleep(1000);
     const id = await driver.findElement(By.xpath('//input[@id="title"]'));
     await id.sendKeys("Test from Briefing");
+    await driver.sleep(1500);
     const textarea = await driver.findElement(
-      By.xpath('//textarea[@id="description"]')
+      By.xpath(
+        '//div[@class="ql-editor ql-blank" and @data-placeholder="Enter description"]'
+      )
     );
     await textarea.sendKeys("Test Description");
+    await driver.sleep(1000);
     let btnRecord = await driver.findElement(
       By.xpath(
         '//button[@type="button"][@class="flex h-12 w-[126px] items-center justify-center rounded-full border-[3px] border-black bg-white"]'

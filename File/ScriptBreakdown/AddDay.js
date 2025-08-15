@@ -5,6 +5,7 @@ const expect = chai.expect;
 const GlobalWMS = require("../GlobalWMS");
 const { login } = require("../LoginHelper");
 const Loop_section = 4;
+const { Key } = require("selenium-webdriver");
 
 describe("Script Breakdown", function () {
   let driver;
@@ -17,19 +18,19 @@ describe("Script Breakdown", function () {
 
   it("Add New Day", async function () {
     // await driver.executeScript("document.body.style.zoom='65%'");
-    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Sample));
+    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Baby));
     chooseFile.click();
-    await driver.sleep(1000);
+    await driver.sleep(2500);
     for (let i = 0; i < Loop_section; i++) {
-      await driver.sleep(4500);
+      await driver.sleep(2500);
       const btnAddND = await driver.findElement(
         By.xpath(
           '//button[@class="flex min-h-[43px] min-w-[186px] items-center gap-2 rounded-lg bg-[#F97066] px-8 py-2 font-semibold text-white"]'
         )
       );
-      await driver.sleep(1500);
+      await driver.sleep(1000);
       btnAddND.click();
-      await driver.sleep(4500);
+      await driver.sleep(2500);
       try {
         const clickDate = await driver.findElement(
           By.xpath(
@@ -38,7 +39,7 @@ describe("Script Breakdown", function () {
         );
         await driver.wait(until.elementIsVisible(clickDate), 1000);
         clickDate.click();
-        await driver.sleep(1500);
+        await driver.sleep(1000);
       } catch (error) {
         console.log("Calendar not found", error);
       }
@@ -51,7 +52,8 @@ describe("Script Breakdown", function () {
       );
       await driver.wait(until.elementIsVisible(selectDate), 1200);
       selectDate.click();
-      await driver.sleep(500);
+      await driver.sleep(3700);
+      await driver.actions().sendKeys(Key.HOME).perform();
       try {
         await driver.wait(async () => {
           const elementSelecDate = await driver.findElements(

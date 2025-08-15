@@ -22,14 +22,14 @@ describe("Delete Script", function () {
               '//div[@class="relative flex cursor-pointer flex-col justify-between rounded-xl border border-[#74D2E8] bg-[#ECF9FC] p-5 shadow-sm transition-all hover:shadow-md"]'
             )
           ),
-          10000
+          8000
         );
-        await driver.wait(until.elementIsVisible(holdScript), 2000);
+        await driver.wait(until.elementIsVisible(holdScript), 1500);
         const action = driver.actions({ async: true });
         await action
           .move({ origin: holdScript })
           .press()
-          .pause(2000)
+          .pause(1500)
           .release()
           .perform();
         const btn_delete = await driver.wait(
@@ -40,7 +40,7 @@ describe("Delete Script", function () {
           )
         );
         btn_delete.click();
-        await driver.sleep(700);
+        await driver.sleep(1000);
         const btn_confirm = await driver.wait(
           until.elementLocated(
             By.xpath(

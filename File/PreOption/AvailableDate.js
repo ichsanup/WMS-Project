@@ -1,12 +1,11 @@
-const { Builder, By, until, actions } = require("selenium-webdriver");
-const chrome = require("selenium-webdriver/chrome");
+const { Builder, By, until, Actions } = require("selenium-webdriver");
+const chrome = require("selenium-webdriver/chrome"); //import chrome options
 const chai = require("chai");
 const expect = chai.expect;
 const GlobalWMS = require("../GlobalWMS");
 const { loginpre } = require("../LoginPre");
-const { Key } = require("selenium-webdriver");
 
-describe("Available Date Filter", async function () {
+describe("Available Date", function () {
   let driver;
 
   before(async function () {
@@ -67,7 +66,7 @@ describe("Available Date Filter", async function () {
       )
     );
     await btnApply.click();
-    await driver.sleep(2500);
+    await driver.sleep(3500);
   });
   after(async function () {
     if (driver) {

@@ -1,7 +1,8 @@
 const { Builder, By, until, Actions } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome"); //import chrome options
 const { login } = require("../LoginHelper");
-const loop_section = 4;
+const GlobalWMS = require("../GlobalWMS");
+const loop_section = 8;
 
 describe("WMS Director Test", function () {
   let driver;
@@ -15,17 +16,11 @@ describe("WMS Director Test", function () {
 
   it("WMS Website", async function () {
     await driver.executeScript("document.body.style.zoom='65%'"); //zoom out page
-    const chooseFile = await driver.findElement(
-      By.xpath(
-        '//h3[contains(text(), "Sample.fdx")]/ancestor::div[contains(@class, "mb-2")]/following-sibling::div//span[text()="Lihat script"]'
-      )
-    );
+    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Baby));
     chooseFile.click();
-    await driver.sleep(500);
+    await driver.sleep(1500);
     const menuBriefing = await driver.findElement(
-      By.xpath(
-        '//a[@class="relative px-[11px] py-[5px] text-sm font-medium text-gray-600 hover:text-gray-900"][text()="Briefing"]'
-      )
+      By.xpath('//a[contains(text(), "Briefing")]')
     );
     menuBriefing.click();
     //Hold and Click

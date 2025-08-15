@@ -16,16 +16,16 @@ describe("Tab Briefing Scene", function () {
 
   it("Test New Tab on Briefing Scene", async function () {
     await driver.executeScript("document.body.style.zoom='65%'");
-    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Sample));
+    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Baby));
     await chooseFile.click();
-    await driver.sleep(4500);
+    await driver.sleep(2000);
     const scenes = await driver.findElement(
       By.xpath(
         '//div[@class="flex-grow cursor-pointer text-center underline hover:text-[#42C1E3] text-white"]'
       )
     );
     await scenes.click();
-    await driver.sleep(4000);
+    await driver.sleep(1500);
     const btnTabBrief = await driver.findElement(
       By.xpath(
         '(//button[@class="rounded-full bg-white p-1 text-[#E8655B] hover:bg-gray-100"])[2]'

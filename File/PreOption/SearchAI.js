@@ -22,6 +22,11 @@ describe("Search AI", async function () {
     await driver.sleep(3500);
     await driver.actions().sendKeys(Key.PAGE_DOWN).perform();
     await driver.sleep(3500);
+    await search.clear();
+    await search.sendKeys("Pria tinggal di Bali", Key.ENTER);
+    await driver.sleep(3500);
+    await driver.actions().sendKeys(Key.PAGE_DOWN).perform();
+    await driver.sleep(3500);
   });
   after(async function () {
     if (driver) {

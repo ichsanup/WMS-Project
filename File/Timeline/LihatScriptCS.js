@@ -16,18 +16,18 @@ describe("Timeline", function () {
 
   it("Timeline Page", async function () {
     await driver.executeScript("document.body.style.zoom='65%'");
-    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.CallSheet));
+    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Baby));
     await chooseFile.click();
     await driver.sleep(1000);
     const menuTimeline = await driver.findElement(
-      By.xpath('//nav[@class="flex w-full gap-12"]//a[text()="Timeline"]')
+      By.xpath('//a[contains(text(), "Timeline")]')
     );
     const EnableTimeline = await menuTimeline.isEnabled();
     expect(EnableTimeline).to.be.true;
     await menuTimeline.click();
-    await driver.sleep(1000);
+    await driver.sleep(2500);
     let cardview = await driver.findElement(
-      By.xpath('//div[@id="draggable-scene-5167"]')
+      By.xpath('//div[@id="draggable-scene-9019"]')
     );
     const Enablecardview = await cardview.isEnabled();
     expect(Enablecardview).to.be.true;
@@ -50,7 +50,7 @@ describe("Timeline", function () {
     await backTimeline.click();
     await driver.sleep(1500);
     cardview = await driver.findElement(
-      By.xpath('//div[@id="draggable-scene-5167"]')
+      By.xpath('//div[@id="draggable-scene-9019"]')
     );
     await driver.executeScript("arguments[0].scrollIntoView(true);", cardview);
     await cardview.click();

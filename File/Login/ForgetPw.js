@@ -1,6 +1,6 @@
 const { Builder, By, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
-const GlobalWMS = require("../GLobalWMS");
+const GlobalWMS = require("../GlobalWMS");
 const fs = require("fs");
 
 // Fungsi untuk menyimpan screenshot jika gagal
@@ -47,6 +47,11 @@ describe("Forgot Password", function () {
     try {
       Link = await driver.get(GlobalWMS.URL4);
       popUp = await driver.get(GlobalWMS.PopupAuth2);
+      let btnGetstarted = await driver.findElement(
+        By.xpath(GlobalWMS.getStarted)
+      );
+      await btnGetstarted.click();
+      await driver.sleep(500);
       let forgotpw = await driver.findElement(
         By.xpath(
           '//button[@class="border-b-2 border-black font-bold text-black"][text()="Forget Password"]'

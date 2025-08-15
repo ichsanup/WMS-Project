@@ -2,11 +2,15 @@ const { By, until } = require("selenium-webdriver");
 const GlobalWMS = require("./GlobalWMS");
 
 async function login(driver) {
-  await driver.get(GlobalWMS.URL4);
-  await driver.get(GlobalWMS.PopupAuth2);
+  await driver.get(GlobalWMS.URL2);
+  await driver.get(GlobalWMS.PopupAuth);
+
+  let btnGetstarted = await driver.findElement(By.xpath(GlobalWMS.getStarted));
+  await btnGetstarted.click();
+  await driver.sleep(500);
 
   let emailField = await driver.findElement(By.id("emailInput"));
-  await emailField.sendKeys(GlobalWMS.Email_CS1);
+  await emailField.sendKeys(GlobalWMS.Email_CS2);
 
   let passwordField = await driver.findElement(By.id("passwordInput"));
   await passwordField.sendKeys(GlobalWMS.Password_CS);

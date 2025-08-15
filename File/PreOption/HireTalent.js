@@ -31,8 +31,6 @@ describe("Hire Talent", async function () {
     await selectTalent.click();
     await driver.sleep(500);
     await driver.actions().sendKeys(Key.UP).perform();
-    await driver.sleep(2500);
-    await driver.actions().sendKeys(Key.UP).perform();
     let selectCalendar = await driver.findElement(
       By.xpath(
         '//div[@class="flex items-center justify-between"]//span[@class="material-icons text-[24px]"]'
@@ -42,7 +40,8 @@ describe("Hire Talent", async function () {
       "arguments[0].scrollIntoView(true);",
       selectCalendar
     );
-    await driver.sleep(500);
+    await driver.sleep(1500);
+    await driver.actions().sendKeys(Key.HOME).perform();
     await selectCalendar.click();
     await driver.sleep(500);
     const selectDate = await driver.findElement(

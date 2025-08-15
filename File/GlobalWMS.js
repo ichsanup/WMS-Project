@@ -9,20 +9,23 @@ const GlobalWMS = {
   Password_Login: "Password123*",
   Email_CS: "helen@wongmakmur.com",
   Email_CS1: "san@wongmakmur.com",
+  Email_CS2: "new@wongmakmur.com",
   Password_CS: "Password123*",
   PopupAuth:
     "https://admin:68BHr63vBpH2G7jh@staging---frontend-shooting-a6e4wwojjq-et.a.run.app/",
   PopupAuth2: "https://admin:68BHr63vBpH2G7jh@syuting.film/",
+  PopupAuth3:
+    "https://admin:68BHr63vBpH2G7jh@qctest---frontend-shooting-a6e4wwojjq-et.a.run.app/",
   Data_Name: "Afgan",
   Data_ID: Math.floor(Math.random() * 100).toString(),
   Data_Phone: Math.floor(Math.random() * 1000000000000)
     .toString()
     .padStart(12, "0"), //padStart memastikan bahwa data memiliki jumlah yang kita inginkan (12) dan 0 untuk memastikan jika panjang kurang dari 6 agar tidak error
-  Phone_Dummy: 081315150475,
-  Email_Host: "sht80450@jioso.com",
+  Phone_Dummy: "081315150475",
+  Email_Host: "jjx97362@jioso.com",
   New_Email: "1@toaik.com",
   Email_Random: Math.floor(Math.random() * 100).toString() + "@gmail.com",
-  Data_Password: "Password123*",
+  Data_Password: "Password123#",
   Address: "Indonesia",
   Sample:
     '//h3[contains(text(), "Sample.fdx")]/ancestor::div[contains(@class, "mb-2")]/following-sibling::div//span[text()="Lihat script"]',
@@ -30,8 +33,7 @@ const GlobalWMS = {
     '//h3[contains(text(), "Above the Law full (1).fdx")]/ancestor::div[contains(@class, "mb-2")]/following-sibling::div//span[text()="Lihat script"]',
   CallSheet:
     '//h3[contains(text(), "CallSheet.fdx")]/ancestor::div[contains(@class, "mb-2")]/following-sibling::div//span[text()="Lihat script"]',
-  Bookworm:
-    '//h3[contains(text(), "script film bookworm.fdx")]/ancestor::div[contains(@class, "mb-2")]/following-sibling::div//span[text()="Lihat script"]',
+  Baby: '//h3[contains(text(), "BABY RENDEER.fdx")]/ancestor::div[contains(@class, "mb-2")]/following-sibling::div//span[text()="Lihat script"]',
   Next: '//button[@class="w-full rounded-lg border border-red-400 p-3 font-medium text-red-400"]',
   Skip: '//button[@class="w-full rounded-lg border border-red-400 p-3 font-medium text-red-400"][text()="Skip"]',
   Create_New:
@@ -48,6 +50,8 @@ const GlobalWMS = {
     '//button[@class="flex w-full items-center justify-center gap-2 rounded-lg p-3 bg-red-400"]',
   btnRegisterNow:
     '//button[@class="w-full rounded-lg bg-red-500 py-3 font-medium text-white hover:bg-red-600" and text()="Register Now"]',
+  getStarted:
+    '//button[contains(@class,"rounded-full") and .//span[contains(., "Get Started")]]',
 };
 
 module.exports = GlobalWMS;

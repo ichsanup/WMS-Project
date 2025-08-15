@@ -15,7 +15,7 @@ describe("Manage Page", function () {
   });
 
   it("WMS Website", async function () {
-    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.CallSheet));
+    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Baby));
     chooseFile.click();
     await driver.sleep(2500);
     //Create condition "if" with try and catch

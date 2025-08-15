@@ -34,7 +34,7 @@ describe("Script Breakdown", function () {
     //Zoom out
     await driver.executeScript("document.body.style.zoom='50%'");
     await driver.sleep(1000); // beri waktu tampilan menyesuaikan
-    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Sample));
+    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Baby));
     chooseFile.click();
     await driver.sleep(3000);
     for (let i = 0; i < LoopSection; i++) {

@@ -84,7 +84,7 @@ describe("WMS Regist Test", function () {
       );
       await driver.wait(until.elementIsVisible(btnRegist), 1000);
       await btnRegist.click();
-      await driver.sleep(62000);
+      await driver.sleep(65000);
       const btnResendEmail = await driver.findElement(
         By.xpath(
           '//button[@class="w-full rounded-lg py-3 text-xl font-medium text-white bg-red-500 hover:bg-red-600"][text()="Resend Email"]'
@@ -95,9 +95,9 @@ describe("WMS Regist Test", function () {
       console.log("Gagal Change Email", error.message);
     }
   });
-  after(async function () {
-    if (driver) {
-      await driver.quit();
-    }
-  });
+  // after(async function () {
+  //   if (driver) {
+  //     await driver.quit();
+  //   }
+  // });
 });

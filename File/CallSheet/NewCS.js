@@ -17,7 +17,7 @@ describe("WMS Director Test", function () {
 
   it("WMS Website", async function () {
     // await driver.executeScript("document.body.style.zoom='65%'");
-    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Sample));
+    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Baby));
     chooseFile.click();
     await driver.sleep(500);
     const csMenu = await driver.findElement(
@@ -26,7 +26,14 @@ describe("WMS Director Test", function () {
       )
     );
     csMenu.click();
-    await driver.sleep(500);
+    await driver.sleep(1500);
+    const manageDay = await driver.findElement(
+      By.xpath(
+        '//div[@class="flex min-h-[52px] min-w-[435px] cursor-pointer items-center border-x border-[#42C1E3] px-5"]'
+      )
+    );
+    await manageDay.click();
+    await driver.sleep(1000);
     const createNew = await driver.findElement(By.xpath(GlobalWMS.Create_New));
     await driver.executeScript("arguments[0].scrollIntoView(true);", createNew);
     await driver.wait(until.elementIsVisible(createNew), 1000);

@@ -27,13 +27,11 @@ describe("WMS Director Test", function () {
 
   it("WMS Website", async function () {
     await driver.executeScript("document.body.style.zoom='75%'"); //zoom out page
-    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Sample));
+    const chooseFile = await driver.findElement(By.xpath(GlobalWMS.Baby));
     chooseFile.click();
-    await driver.sleep(500);
+    await driver.sleep(2500);
     const menuBriefing = await driver.findElement(
-      By.xpath(
-        '//a[@class="relative px-[11px] py-[5px] text-sm font-medium text-gray-600 hover:text-gray-900"][text()="Briefing"]'
-      )
+      By.xpath('//a[contains(text(), "Briefing")]')
     );
     menuBriefing.click();
     await driver.sleep(2000);
@@ -77,8 +75,11 @@ describe("WMS Director Test", function () {
         )
       );
       addTitle.sendKeys(randomText());
+      await driver.sleep(1500);
       let deskripsi = await driver.findElement(
-        By.xpath('//textarea[@id="description"]')
+        By.xpath(
+          '//div[@class="ql-editor ql-blank" and @data-placeholder="Enter description"]'
+        )
       );
       deskripsi.sendKeys(randomText());
       let btnAddBrief = await driver.findElement(

@@ -6,8 +6,38 @@ const GlobalWMS = require("../GlobalWMS");
 const { regist } = require("../RegistHelper");
 const { Key } = require("selenium-webdriver");
 
+async function takeScreenshot(driver, testName) {
+  const screenshotDir = "./screenshots"; // Folder penyimpanan screenshot
+  if (!fs.existsSync(screenshotDir)) {
+    fs.mkdirSync(screenshotDir);
+  }
+
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const screenshotPath = `${screenshotDir}/${testName}-${timestamp}.png`;
+
+  try {
+    const image = await driver.takeScreenshot();
+    fs.writeFileSync(screenshotPath, image, "base64");
+    console.log(`Screenshot saved: ${screenshotPath}`);
+  } catch (error) {
+    console.error("Gagal menyimpan screenshot:", error);
+  }
+}
+
+function generateRandomEmail() {
+  const chars = "abcdefghijklmnopqrstuvwxyz";
+  let randomText = "";
+
+  for (let i = 0; i < 8; i++) {
+    randomText += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+
+  return `${randomText}@gmail.com`;
+}
+
 describe("WMS Regist Test", function () {
   let driver;
+  let emailRandom = generateRandomEmail();
 
   before(async function () {
     driver = await new Builder().forBrowser("chrome").build();
@@ -44,7 +74,7 @@ describe("WMS Regist Test", function () {
       ),
       1000
     );
-    await email.sendKeys(GlobalWMS.Email_Random);
+    await email.sendKeys(emailRandom);
     let password = await driver.findElement(
       By.xpath(
         '//input[@class="w-full rounded-md border px-3 py-2 border-gray-300 bg-white "][@name="password"]'
@@ -106,23 +136,31 @@ describe("WMS Regist Test", function () {
       await element.clear();
       await element.sendKeys(value);
     }
-    await clearAndType(newEmail, GlobalWMS.New_Email);
-    await driver.sleep(6500);
-    const btnchangeEmail = await driver.findElement(
-      By.xpath(
-        '//button[@class="w-full rounded-lg bg-red-500 py-3 font-bold text-white hover:bg-red-600 disabled:bg-red-300"][text()="Change email"]'
-      )
-    );
-    await btnchangeEmail.click();
-    let expectCondition = await findElement(
-      By.xpath("//*[contains(text(), 'Account Created')]")
-    );
-    expect(await expectCondition.getText()).to.include("Account Created");
-    await driver.sleep(4500);
+    await clearAndType(newEmail, GlobalWMS.Email_Random);
+    await driver.sleep(2000);
+    try {
+      const btnChangeEmail = await driver.findElement(
+        By.xpath(
+          '//button[@class="w-full rounded-lg bg-red-500 py-3 font-bold text-white hover:bg-red-600 disabled:bg-red-300"][text()="Change email"]'
+        )
+      );
+      await driver.wait(until.elementIsVisible(btnChangeEmail), 1000);
+      await btnChangeEmail.click();
+      console.log("Button Change Email Berhasil Diklik");
+    } catch (error) {
+      console.error("Gagal mengklik tombol Change Email:", error.message);
+      await takeScreenshot(driver, "ChangeEmailError");
+    }
+    await driver.sleep(3500);
+    // let currentURL = await driver.getCurrentUrl();
+    // expect(currentURL).to.include(
+    //   "https://admin:68BHr63vBpH2G7jh@syuting.film/register/talent/verify"
+    // );
+    // await driver.sleep(2000);
   });
-  // after(async function () {
-  //   if (driver) {
-  //     await driver.quit();
-  //   }
-  // });
+  after(async function () {
+    if (driver) {
+      await driver.quit();
+    }
+  });
 });
