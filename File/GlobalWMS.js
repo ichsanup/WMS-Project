@@ -22,10 +22,10 @@ const GlobalWMS = {
     .toString()
     .padStart(12, "0"), //padStart memastikan bahwa data memiliki jumlah yang kita inginkan (12) dan 0 untuk memastikan jika panjang kurang dari 6 agar tidak error
   Phone_Dummy: "081315150475",
-  Email_Host: "jjx97362@jioso.com",
+  Email_Host: "per17911@toaik.com",
   New_Email: "1@toaik.com",
   Email_Random: Math.floor(Math.random() * 100).toString() + "@gmail.com",
-  Data_Password: "Password123#",
+  Data_Password: "Password123*",
   Address: "Indonesia",
   Sample:
     '//h3[contains(text(), "Sample.fdx")]/ancestor::div[contains(@class, "mb-2")]/following-sibling::div//span[text()="Lihat script"]',
@@ -50,8 +50,7 @@ const GlobalWMS = {
     '//button[@class="flex w-full items-center justify-center gap-2 rounded-lg p-3 bg-red-400"]',
   btnRegisterNow:
     '//button[@class="w-full rounded-lg bg-red-500 py-3 font-medium text-white hover:bg-red-600" and text()="Register Now"]',
-  getStarted:
-    '//button[contains(@class,"rounded-full") and .//span[contains(., "Get Started")]]',
+  getStarted: '(//button//span[text()="Get Started"])[1]',
 };
 
 module.exports = GlobalWMS;

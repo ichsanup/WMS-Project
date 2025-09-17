@@ -4,6 +4,7 @@ const GlobalWMS = require("./GlobalWMS");
 async function login(driver) {
   await driver.get(GlobalWMS.URL2);
   await driver.get(GlobalWMS.PopupAuth);
+  await driver.sleep(2000);
 
   let btnGetstarted = await driver.findElement(By.xpath(GlobalWMS.getStarted));
   await btnGetstarted.click();

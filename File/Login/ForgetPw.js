@@ -47,6 +47,7 @@ describe("Forgot Password", function () {
     try {
       Link = await driver.get(GlobalWMS.URL4);
       popUp = await driver.get(GlobalWMS.PopupAuth2);
+      await driver.sleep(2000);
       let btnGetstarted = await driver.findElement(
         By.xpath(GlobalWMS.getStarted)
       );
